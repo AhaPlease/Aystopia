@@ -1,9 +1,138 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aystopia</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Irregularity</h1>
-  </body>
+    <div class="container">
+    <!-- Navigation bar -->
+    <nav>
+          <ul>
+            <li><a href="#home-section">Home</a></li>
+            <li><a href="#story-section">Story</a></li>
+            <li><a href="#world-section">World</a></li>
+            <li><a href="#irregulars-section">Irregulars</a></li>
+            <li><a href="#about-section">About</a></li>
+          </ul>
+    </nav>
+
+    <!-- Home Page Section -->
+    <section id="home-section" class="home-section">
+      <!-- Content for the home page section -->
+      <h1>Aystopia</h1>
+      <!-- Add more content as needed -->
+    </section>
+
+    <!-- Story Page Section -->
+    <section id="story-section" class="story-section">
+      <!-- Content for the story page section -->
+      <h1>Story</h1>
+      <!-- Add more content as needed -->
+    </section>
+
+    <!-- Irregulars Section -->
+    <section id="irregulars-section" class="irregulars-section">
+    <div class="top-left-text">
+      <h1>Irregulars</h1>
+    </div>
+      
+      <div class="gallery">
+        <button class="prev-btn"><span>&#10094;</span></button>
+        <!-- Gallery content (Irregulars) -->
+        <div class="img-box">
+          <h3>Karth</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Characters/00043-2896284006.png" alt="Overlay Image" class="overlay-image">
+        </div>
+        <div class="img-box">
+          <h3>Yuri</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Characters/Yuri.png" alt="Overlay Image" class="overlay-image">
+        </div>
+        <div class="img-box">
+          <h3>Selena</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Characters/Selena.png" alt="Overlay Image" class="overlay-image">
+        </div>
+        <div class="img-box">
+          <h3>Elaine</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Characters/Elaine.png" alt="Overlay Image" class="overlay-image">
+        </div>
+        <div class="img-box">
+          <h3>Rachel</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Characters/Rachel.png" alt="Overlay Image" class="overlay-image">
+        </div>
+
+        <div class="img-box">
+          <h3>Elaine</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Background/Gray.jpg" alt="Overlay Image" class="overlay-image">
+        </div>
+        <div class="img-box">
+          <h3>Rachel</h3>
+          <img src="images/Background/Black.jpg" alt="Background Image" class="background-image">
+          <img src="images/Background/Gray.jpg" alt="Overlay Image" class="overlay-image">
+        </div>
+        <button class="next-btn"><span>&#10095;</span></button>
+      </div>
+      
+    </section>
+
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      const imgBoxes = document.querySelectorAll(".img-box");
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+      const gallery = document.querySelector(".gallery");
+
+      let currentIndex = 0;
+      const visibleCount = 5; // Number of images to display at a time
+      const totalImages = imgBoxes.length;
+      let visibleStartIndex = 0;
+
+      // Show the initial set of images
+      showImages();
+
+      // Function to display the images within the visible range
+      function showImages() {
+        for (let i = 0; i < totalImages; i++) {
+          if (i >= visibleStartIndex && i < visibleStartIndex + visibleCount) {
+            imgBoxes[i].style.display = "block";
+          } else {
+            imgBoxes[i].style.display = "none";
+          }
+        }
+        // Calculate the translateX value for the gallery container
+        const translateX = -(visibleStartIndex * (imgBoxes[0].offsetWidth)); // Assuming each image box has a margin of 10px on each side
+        gallery.style.transform = `translateX(${translateX}px)`;
+      }
+
+      // Event listener for the previous button
+      prevBtn.addEventListener("click", function () {
+        if (visibleStartIndex > 0) {
+          visibleStartIndex--;
+        } else {
+          visibleStartIndex = totalImages - visibleCount;
+        }
+        showImages();
+      });
+
+      // Event listener for the next button
+      nextBtn.addEventListener("click", function () {
+        if (visibleStartIndex < totalImages - visibleCount) {
+          visibleStartIndex++;
+        } else {
+          visibleStartIndex = 0;
+        }
+        showImages();
+      });
+    });
+
+  </script>
+</body>
 </html>
